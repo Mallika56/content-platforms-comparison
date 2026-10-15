@@ -129,8 +129,9 @@ For the full analyses behind each side:
 
 ## Data Note
 
-Both source datasets are synthetic samples mirroring the structure of their respective
-real-world Kaggle datasets, used to demonstrate methodology. The Netflix dataset has been
-verified against the real Kaggle "Netflix Movies and TV Shows" data; the Spotify dataset
-mirrors the structure of the "Spotify Tracks Dataset." Swap either CSV for its real-data
-equivalent and the entire pipeline — including this comparison — runs unchanged.
+The two sides of this comparison are not on equal footing, data-wise. `netflix_titles.csv`
+(pulled from the netflix-analytics repo) is the **real** public Kaggle "Netflix Movies and
+TV Shows" dataset. `spotify_tracks.csv` (pulled from the spotify-analytics repo) is a
+**synthetic sample** built to mirror the structure of the real Kaggle "Spotify Tracks
+Dataset," with realistic feature–popularity correlations baked in. Swap the Spotify file
+for its real-data equivalent and this notebook's pipeline runs unchanged.
