@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      # The notebook pulls both source CSVs over HTTPS from the netflix-analytics
+      # and spotify-analytics repos (raw.githubusercontent.com) -- no API keys or
+      # rate-limited endpoints involved, so a full top-to-bottom execution is cheap
+      # and safe to run on every push/PR.
+      - name: Execute notebook end-to-end
+        run: |
+          jupyter nbconvert --to notebook --execute notebook/comparison.ipynb \
+            --output /tmp/comparison_executed.ipynb
